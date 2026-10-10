@@ -1134,6 +1134,16 @@ r.post(
 
 /* ─── Deployments ──────────────────────────────────────────────────────── */
 r.get(
+  "/:id/migration-status",
+  {
+    tag: "project:read",
+    localOnly: true,
+    query: ProjectControlSchemas.getMigrationStatus.input,
+    mcp: { description: "Check a reviewed exact candidate migration manifest against the active standalone project's Prisma PostgreSQL history. UNKNOWN closes the gate; this never applies migrations." },
+  },
+  ctrl.getMigrationStatus,
+);
+r.get(
   "/:id/deployments",
   {
     tag: "project:deployment:list",

@@ -19,6 +19,7 @@ export * from "./sources";
 export * from "./builds";
 export * from "./resource-operations";
 export * from "./project-controls";
+export * from "./project-migration-status";
 export * from "./project-connections";
 export * from "./project-storage";
 export * from "./project-integrations";

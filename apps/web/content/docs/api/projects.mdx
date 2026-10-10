@@ -484,6 +484,7 @@ IDs.
 | Read the project’s current deployment session. | `projects.deploymentSession(id)` | `POST /api/projects/:id/deployment-session`<br />`project:read` |
 | Clear authorized build cache for the project. | `projects.clearBuildCache(id)` | `POST /api/projects/:id/clear-build`<br />`project:admin` · Self-hosted |
 | Inspect retained rollback capacity. | `projects.getRollbackCapacity(id)` | `GET /api/projects/:id/rollback-capacity`<br />`project:read` |
+| Compare a reviewed exact candidate Prisma migration manifest with the active standalone PostgreSQL history. Requires an operator profile; UNKNOWN closes the gate. Never applies migrations. | `projects.getMigrationStatus(id, input)` | `GET /api/projects/:id/migration-status`<br />`project:read` · Self-hosted |
 | Check deployment port requirements. | `projects.checkPorts(id)` | `POST /api/projects/:id/port-check`<br />`project:read` |
 | Check the configured build output. | `projects.checkOutput(id)` | `POST /api/projects/:id/output-check`<br />`project:read` |
 | Read actions that need a deployment or routing decision. | `projects.getPendingActions(id)` | `GET /api/projects/:id/pending-actions`<br />`project:read` |

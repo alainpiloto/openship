@@ -750,6 +750,16 @@ export async function listDeployments(c: Context) {
 }
 
 // ─── Deployment session ──────────────────────────────────────────────────────
+export async function getMigrationStatus(c: Context) {
+  // Forward every query key so the closed schema rejects command/DSN/cwd extras.
+  const result = await getPlatformKernel().projects.getMigrationStatus(
+    operationContext(c), param(c, "id"), c.req.query() as { revision: string },
+  );
+  applyOperationContext(c, result.context);
+  c.header("Cache-Control", "no-store");
+  return c.json({ data: result.data });
+}
+
 
 export async function deploymentSession(c: Context) {
   const result = await getPlatformKernel().projects.deploymentSession(

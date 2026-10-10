@@ -131,6 +131,7 @@ export function createRemoteProjectOperations(http: HttpClient): ProjectOperatio
       setAutoDeploy: { method: "POST", path: (id) => path(id) + "/auto-deploy" },
       setWebhookDomain: { method: "POST", path: (id) => path(id) + "/webhook-domain" },
       listDeployments: { method: "GET", path: (id) => path(id) + "/deployments" },
+      getMigrationStatus: { method: "GET", path: (id) => path(id) + "/migration-status", envelope: "data", redactInvalidResponse: true },
       deploymentSession: { method: "POST", path: (id) => path(id) + "/deployment-session" },
       clearBuildCache: { method: "POST", path: (id) => path(id) + "/clear-build" },
       getRollbackCapacity: {
