@@ -31,6 +31,9 @@ export function createProjectControls(
       after,
     });
   return {
+    async getMigrationStatus(ctx, id, input) {
+      return (await import("./migration-status.service")).getMigrationStatus(id, ctx.organizationId, input.revision);
+    },
     ...createProjectClusterOperations(recordAudit),
     ...createClusterDatabaseOperations(recordAudit),
     ...createClusterVolumeOperations(recordAudit),

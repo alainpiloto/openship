@@ -21,6 +21,8 @@ interface ResourceRoute {
   response?(body: unknown): unknown;
   /** Some existing HTTP endpoints use an error status for a valid operation result. */
   resultStatuses?: readonly number[];
+  /** Credential-bearing resources must not attach an invalid response to an error. */
+  redactInvalidResponse?: boolean;
 }
 
 /** HTTP adapts only paths and envelopes; native calls share the same contracts. */
@@ -63,7 +65,7 @@ export function createRemoteResourceOperations<S extends Record<string, Resource
               : undefined
             : response;
           if (!isResourceOutput(spec, data))
-            throw new ApiError(`Invalid ${name} response`, 502, response);
+            throw new ApiError(`Invalid ${name} response`, 502, route.redactInvalidResponse ? null : response);
           return data;
         },
       ]),

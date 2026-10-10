@@ -390,6 +390,12 @@
       "description": "Inspect retained rollback capacity.",
       "route": "GET /api/projects/:id/rollback-capacity"
     },
+    "projects.getMigrationStatus": {
+      "page": "projects",
+      "section": "Source and deployment",
+      "description": "Compare a reviewed exact candidate Prisma migration manifest with the active standalone PostgreSQL history. Requires an operator profile; UNKNOWN closes the gate. Never applies migrations.",
+      "route": "GET /api/projects/:id/migration-status"
+    },
     "projects.checkPorts": {
       "page": "projects",
       "section": "Source and deployment",

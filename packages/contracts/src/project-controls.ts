@@ -29,6 +29,7 @@ import { ProjectClusterSchemas } from "./project-cluster";
 import { ProjectDatabaseSchemas } from "./cluster-database";
 import { ProjectVolumeSchemas } from "./cluster-storage";
 import { BranchPageInput, BranchPaginationSchema } from "./github";
+import { ProjectMigrationSchemas } from "./project-migration-status";
 
 const nullableString = Type.Union([Type.String(), Type.Null()]);
 export const ProjectEnvironmentSchema = Type.Object({
@@ -302,6 +303,7 @@ export const ProjectDriftSchema = Type.Union([
 ]);
 
 export const ProjectControlSchemas = {
+  ...ProjectMigrationSchemas,
   ...ProjectDatabaseSchemas,
   ...ProjectVolumeSchemas,
   ...AppProjectSchemas,
