@@ -47,9 +47,9 @@ export function evaluateMigrationHistory(manifest: Manifest, raw: unknown) {
   }
   const appliedNames = new Set(applied.map((r) => r.name));
   const pending = names.filter((n) => !appliedNames.has(n)).length;
-  applied.forEach((row, i) => {
-    if (names[i] !== row.name) divergent++;
-  });
+  // Prisma identifies applied migrations by name and checksum. The database's
+  // started_at order may differ after legitimate historical resolution; it is
+  // not evidence of a different migration history.
   // A hole before a later applied migration is not a safe pending suffix.
   let missing = false;
   for (const name of names) {
