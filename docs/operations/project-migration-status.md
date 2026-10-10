@@ -128,7 +128,9 @@ until actual work settles after an HTTP deadline. Multi-process installations ha
 limits; configure gateway rate limiting as needed before deployment.
 
 History comparison ignores rolled-back attempts, rejects unknown/changed checksums,
-duplicate live records, order mismatches or holes, and reports unfinished live attempts.
+duplicate live records or holes in the applied candidate prefix, and reports unfinished live attempts.
+Applied migrations are identified by name and checksum, independent of their historical
+`started_at` order. This matches Prisma 5.22's [history diagnosis](https://github.com/prisma/prisma-engines/blob/5.22.0/schema-engine/core/src/commands/diagnose_migration_history.rs): chronological database order alone does not establish divergence.
 A complete safe prefix yields PENDING; a complete identical history yields UP_TO_DATE.
 Divergence takes precedence over failures. Invalid/incomplete evidence yields UNKNOWN.
 Deployment pointer/commit/container/status are revalidated after probing. There is no

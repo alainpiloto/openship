@@ -105,7 +105,7 @@ describe("candidate history evaluation", () => {
     [[row("001_init", { checksum: "c".repeat(64) })], "DIVERGED"],
     [[row("unknown")], "DIVERGED"],
     [[row("002_next")], "DIVERGED"],
-    [[row("002_next"), row("001_init")], "DIVERGED"],
+    [[row("002_next"), row("001_init")], "UP_TO_DATE"],
     [[row("001_init"), row("001_init")], "DIVERGED"],
     [[row("001_init", { finished: false, rolledBack: true }), row("001_init")], "PENDING"],
   ])("evaluates %j as %s", (rows, status) => {
